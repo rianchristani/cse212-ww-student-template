@@ -14,6 +14,9 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 1");
+        var service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.ServeCustomer();
 
         // Defect(s) Found: 
 
@@ -23,6 +26,14 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 2");
+        Console.WriteLine("Test 2");
+        service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        Console.WriteLine($"Before serving customers: {service}");
+        service.ServeCustomer();
+        service.ServeCustomer();
+        Console.WriteLine($"After serving customers: {service}");
 
         // Defect(s) Found: 
 
@@ -88,9 +99,16 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
-        var customer = _queue[0];
-        Console.WriteLine(customer);
+        if (_queue.Count <= 0) // Defect 2 - Need to check queue length
+        {
+            Console.WriteLine("No Customers in the queue");
+        }
+        else {
+            // Need to read and save the customer before it is deleted from the queue
+            var customer = _queue[0];
+            _queue.RemoveAt(0); // Defect 1 - Delete should be done after
+            Console.WriteLine(customer);
+        }
     }
 
     /// <summary>

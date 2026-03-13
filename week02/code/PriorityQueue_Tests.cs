@@ -6,23 +6,38 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class PriorityQueueTests
 {
     [TestMethod]
-    // Scenario: 
+    // Scenario: Using 2 high priority index with the same values. 
     // Expected Result: 
     // Defect(s) Found: 
     public void TestPriorityQueue_1()
     {
+
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        
+        priorityQueue.Enqueue("First",3);
+        priorityQueue.Enqueue("Second", 8);
+        priorityQueue.Enqueue("Third", 8);
+        priorityQueue.Enqueue("Fourth", 2);
+
+        var result = priorityQueue.Dequeue();
+        Assert.AreEqual("Second", result);
     }
 
     [TestMethod]
-    // Scenario: 
+    // Scenario: Only one high priprity index
     // Expected Result: 
     // Defect(s) Found: 
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+
+        priorityQueue.Enqueue("First",4);
+        priorityQueue.Enqueue("Second", 5);
+        priorityQueue.Enqueue("Third", 6);
+        priorityQueue.Enqueue("Fourth", 7);
+
+        var result = priorityQueue.Dequeue();
+        Assert.AreEqual("Fourth", result); 
     }
 
     // Add more test cases as needed below.
