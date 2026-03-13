@@ -7,8 +7,6 @@ public class PriorityQueueTests
 {
     [TestMethod]
     // Scenario: Using 2 high priority index with the same values. 
-    // Expected Result: 
-    // Defect(s) Found: 
     public void TestPriorityQueue_1()
     {
 
@@ -25,8 +23,6 @@ public class PriorityQueueTests
 
     [TestMethod]
     // Scenario: Only one high priprity index
-    // Expected Result: 
-    // Defect(s) Found: 
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
