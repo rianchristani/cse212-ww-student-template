@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json;
 
 public static class SetsAndMaps
@@ -21,8 +22,25 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        var results = new List<string>();
+        var pairsSeen = new HashSet<string>();
+
+        foreach (var w in words)
+        {
+            string reverse = "" + w[1] + w[0];
+
+            if (pairsSeen.Contains(reverse))
+            {
+                results.Add($"{reverse} & {w}");
+            }
+            else
+            {
+                pairsSeen.Add(w);
+            }
+
+        }
+
+        return results.ToArray();
     }
 
     /// <summary>
@@ -42,7 +60,16 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            var type = fields[3];
+
+            if (degrees.ContainsKey(type))
+            {
+                degrees[type] += 1;
+            }
+            else
+            {
+                degrees[type] = 1;
+            }
         }
 
         return degrees;
