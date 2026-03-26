@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using System;
+using System.Collections.Generic;
 
 public static class SetsAndMaps
 {
@@ -158,6 +160,16 @@ public static class SetsAndMaps
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
         // 3. Return an array of these string descriptions.
-        return [];
+
+        List<string> sentences = new List<string>();
+
+        foreach (var item in featureCollection.Features)
+        {
+            var sentence = $"{item.Properties.Place} - Mag {item.Properties.Mag}";
+
+            sentences.Add(sentence);
+        }
+
+        return sentences.ToArray();
     }
 }
